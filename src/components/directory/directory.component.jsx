@@ -1,7 +1,6 @@
 import React from "react";
-import MenuItem from '../menu-item/menu-item.component';
-import './directory.styles.scss';
-
+import MenuItem from "../menu-item/menu-item.component";
+import "./directory.styles.scss";
 
 class Directory extends React.Component {
   constructor() {
@@ -13,7 +12,7 @@ class Directory extends React.Component {
           title: "hats",
           imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
           id: 1,
-          linkUrl: "/hats"
+          linkUrl: "shop/hats"
         },
         {
           title: "jackets",
@@ -28,14 +27,14 @@ class Directory extends React.Component {
           linkUrl: "shop/sneakers"
         },
         {
-          title: "womens",
+          title: "women",
           imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
           size: "large",
           id: 4,
           linkUrl: "shop/women"
         },
         {
-          title: "mens",
+          title: "men",
           imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
           size: "large",
           id: 5,
@@ -45,16 +44,15 @@ class Directory extends React.Component {
     };
   }
 
-  render(){
-      return (
-        <div className='directory-menu'>
-        {
-            this.state.sections.map(({id, ...otherSectionProps}) => (
-                <MenuItem key={id} {...otherSectionProps}/>
-            ))
-        }
-        /</div>
-      );
+  render() {
+    return (
+      <div className="directory-menu">
+        {this.state.sections.map(({ id, ...otherSectionProps }) => (
+          <MenuItem key={id} {...otherSectionProps} />
+        ))}
+        /
+      </div>
+    );
   }
 }
 
