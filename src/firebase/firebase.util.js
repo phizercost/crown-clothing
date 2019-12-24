@@ -13,6 +13,8 @@ const config = {
   measurementId: "G-7WJ5M16YY9"
 };
 
+firebase.initializeApp(config);
+
 export const createUserProfileDocument = async (userAuth, additionData) => {
   if (!userAuth) return;
 
@@ -37,14 +39,6 @@ export const createUserProfileDocument = async (userAuth, additionData) => {
   }
   return userRef;
 };
-
-firebase.initializeApp(config);
-
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
-
-const provider = new firebase.auth.GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
 
 export const addCollectionAndDocuments = async (
   collectionKey,
@@ -74,11 +68,16 @@ export const convertCollectionsSnapshotToMap = collections => {
   });
 
   return transformedCollection.reduce((accumulator, collection) => {
-    accumulator[collections.title.toLowerCase()] = collection;
+    accumulator[collection.title.toLowerCase()] = collection;
     return accumulator;
   }, {});
 };
 
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
 export default firebase;
